@@ -80,6 +80,7 @@ Parent-child relationships are preserved to enable **accurate contextual reconst
 ---
 
 ## 🏗️ Architecture
+<img width="1076" height="3630" alt="Untitled diagram-2026-01-02-155834" src="https://github.com/user-attachments/assets/68688416-7cab-4665-8595-5921c57df4e8" />
 
 ```
 ![flowchart TD
