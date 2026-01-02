@@ -12,6 +12,8 @@
 
 Unlike standard RAG systems that treat code as plain text, CodeMind **preserves code structure**, reconstructs full logical units, and answers **only using verified code context**.
 
+<img src="assets/codemind-demo.gif" alt=" Visual Proof ">
+
 ---
 
 ## Why CodeMind is Different
@@ -143,11 +145,6 @@ uvicorn backend.main:app --reload
 
 streamlit run frontend/app.py
 ```
-## Visual Proof
-
-📸 Streamlit UI with complex query and reconstructed context
-
-(Add screenshot here)
 
 ## Technical Challenges Solved
 - Handling Async AST Nodes
