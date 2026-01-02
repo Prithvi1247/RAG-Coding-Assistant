@@ -80,46 +80,34 @@ Parent-child relationships are preserved to enable **accurate contextual reconst
 ---
 
 ## 🏗️ Architecture
-<img width="500" height="2000" alt="Untitled diagram-2026-01-02-155834" src="https://github.com/user-attachments/assets/68688416-7cab-4665-8595-5921c57df4e8" />
+<img width="300" height="700" alt="Untitled diagram-2026-01-02-155834" src="https://github.com/user-attachments/assets/68688416-7cab-4665-8595-5921c57df4e8" />
 
-```
-![flowchart TD
-    A[User Codebase ZIP] --> B[AST Parsing]
-    B --> C[Structural Code Chunks]
-    C --> D[Embeddings]
-    D --> E[Qdrant Vector DB]
-    E --> F[Symbol-Aware Retrieval]
-    F --> G[Chunk Reconstruction]
-    G --> H["LLM Answer (Grounded)"]](flowchart.png)
 
-    
-```
+## 🛠️ Tech Stack
+### Backend
 
-🛠️ Tech Stack
-Backend
+- Python 3.10+
 
-Python 3.10+
+- FastAPI
 
-FastAPI
+- Python AST
 
-Python AST
+- SentenceTransformers (nomic-embed-text-v1.5)
 
-SentenceTransformers (nomic-embed-text-v1.5)
+- Qdrant
 
-Qdrant
+### Frontend
 
-Frontend
+- Streamlit (intentionally minimal)
 
-Streamlit (intentionally minimal)
+## How to Run 
+### Prerequisites
 
-▶️ How to Run (CRITICAL)
-Prerequisites
+- Python 3.10+
 
-Python 3.10+
+- Docker (for Qdrant)
 
-Docker (for Qdrant)
-
-Git
+- Git
 
 1️⃣ Clone Repository
 git clone https://github.com/your-username/CodeMind.git
@@ -141,66 +129,50 @@ uvicorn backend.main:app --reload
 6️⃣ Start Frontend
 streamlit run frontend/app.py
 
-🖼️ Visual Proof
+## Visual Proof
 
 📸 Streamlit UI with complex query and reconstructed context
 
 (Add screenshot here)
 
-🧪 Example Queries
+## Technical Challenges Solved
+- Handling Async AST Nodes
 
-“What does the BankAccount class do?”
+- Python’s AST represents async functions differently (AsyncFunctionDef).
+  
+- Ensuring consistent extraction and reconstruction across sync/async functions required separate traversal logic and symbol normalization.
 
-“Improve the withdrawal logic”
+- Class Context Reconstruction
 
-“Explain this module in simple terms”
+- Class headers and methods are indexed separately for retrieval quality, then re-attached at query time — balancing recall accuracy with context integrity.
 
-“Where is error handling missing?”
+- Chunk Explosion Control
 
-“Refactor this function safely”
+- Symbol-level deduplication was required to prevent redundant chunks from overwhelming the LLM context window.
 
-🧠 Technical Challenges Solved
-Handling Async AST Nodes
+## Roadmap
 
-Python’s AST represents async functions differently (AsyncFunctionDef).
-Ensuring consistent extraction and reconstruction across sync/async functions required separate traversal logic and symbol normalization.
+- Multi-language support
 
-Class Context Reconstruction
+- Dependency graph reasoning
 
-Class headers and methods are indexed separately for retrieval quality, then re-attached at query time — balancing recall accuracy with context integrity.
+- Call-chain tracing
 
-Chunk Explosion Control
+- IDE plugin
 
-Symbol-level deduplication was required to prevent redundant chunks from overwhelming the LLM context window.
+## Why This Matters
 
-🚧 Roadmap
+- Faster onboarding
 
-Multi-language support
+- **Zero** hallucination risk
 
-Dependency graph reasoning
+- Private codebase safe
 
-Call-chain tracing
+- Scales to **large repos**
 
-IDE plugin
+- Designed like a **production system** 
 
-💼 Why This Matters to Clients
+### Built Focused on structural correctness, data engineering, and production-grade AI systems.
 
-Faster onboarding
-
-Zero hallucination risk
-
-Private codebase safe
-
-Scales to large repos
-
-Designed like a production system
-
-👨‍💻 Built By
-
-Prithvi Raj
-Focused on structural correctness, data engineering, and production-grade AI systems.
-
-⭐ Final Thought
-
-CodeMind doesn’t just retrieve code.
-It reconstructs intent.
+**CodeMind doesn’t just retrieve code.** 
+**It reconstructs intent.** 
