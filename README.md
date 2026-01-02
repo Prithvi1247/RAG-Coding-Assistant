@@ -118,7 +118,7 @@ Parent-child relationships are preserved to enable **accurate contextual reconst
 
 ### 1️⃣ Clone Repository
 ```bash
-git clone [https://github.com/your-username/CodeMind.git](https://github.com/your-username/CodeMind.git)
+git clone https://github.com/Prithvi1247/RAG-Coding-Assistant
 cd CodeMind
 ```
 ### 2️⃣ Create Virtual Environment
@@ -145,7 +145,7 @@ docker run -p 6333:6333 qdrant/qdrant
 ### 5️⃣ Start Backend
 ```Bash
 
-uvicorn backend.main:app --reload
+uvicorn backend.main:app 
 ```
 ### 6️⃣ Start Frontend
 ```Bash
