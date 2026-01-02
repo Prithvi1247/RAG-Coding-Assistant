@@ -100,35 +100,49 @@ Parent-child relationships are preserved to enable **accurate contextual reconst
 
 - Streamlit (intentionally minimal)
 
-## How to Run 
+## ▶️ How to Run
+
 ### Prerequisites
+* Python 3.10+
+* Docker (for Qdrant)
+* Git
 
-- Python 3.10+
-
-- Docker (for Qdrant)
-
-- Git
-
-1️⃣ Clone Repository
-git clone https://github.com/your-username/CodeMind.git
+### 1️⃣ Clone Repository
+```bash
+git clone [https://github.com/your-username/CodeMind.git](https://github.com/your-username/CodeMind.git)
 cd CodeMind
+```
+### 2️⃣ Create Virtual Environment
+```Bash
 
-2️⃣ Create Virtual Environment
 python -m venv venv
+
+# Mac/Linux:
 source venv/bin/activate
 
-3️⃣ Install Dependencies
+# Windows (Command Prompt):
+venv\Scripts\activate
+```
+### 3️⃣ Install Dependencies
+```Bash
+
 pip install -r requirements.txt
+```
+### 4️⃣ Start Qdrant
+```Bash
 
-4️⃣ Start Qdrant
 docker run -p 6333:6333 qdrant/qdrant
+```
+### 5️⃣ Start Backend
+```Bash
 
-5️⃣ Start Backend
 uvicorn backend.main:app --reload
+```
+### 6️⃣ Start Frontend
+```Bash
 
-6️⃣ Start Frontend
 streamlit run frontend/app.py
-
+```
 ## Visual Proof
 
 📸 Streamlit UI with complex query and reconstructed context
