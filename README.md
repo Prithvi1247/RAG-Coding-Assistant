@@ -1,4 +1,4 @@
-# 🧠 CodeMind  
+# CodeMind 🧠 
 ### Structural Code Intelligence with AST-Powered RAG
 
 > **CodeMind is not a generic LLM wrapper.  
@@ -6,7 +6,7 @@
 
 ---
 
-## 🚀 What is CodeMind?
+## What is CodeMind?
 
 **CodeMind** is an AI-powered assistant that enables natural-language querying over real-world codebases with **high precision and zero hallucination**.
 
@@ -14,7 +14,7 @@ Unlike standard RAG systems that treat code as plain text, CodeMind **preserves 
 
 ---
 
-## 🔥 Why CodeMind is Different
+## Why CodeMind is Different
 
 ### ❌ Typical Code RAG Systems
 - Random token chunking  
@@ -30,7 +30,7 @@ CodeMind treats code as **structured data**, not text.
 
 ---
 
-## 🧩 Core Capabilities
+##  Core Capabilities
 
 ### 🧠 AST-Driven Code Parsing
 Leverages Python’s native `ast` module to traverse syntax trees and extract:
@@ -80,7 +80,7 @@ Parent-child relationships are preserved to enable **accurate contextual reconst
 ---
 
 ## 🏗️ Architecture
-<img width="300" height="700" alt="Untitled diagram-2026-01-02-155834" src="https://github.com/user-attachments/assets/68688416-7cab-4665-8595-5921c57df4e8" />
+<img width="200" height="700" alt="Untitled diagram-2026-01-02-155834" src="https://github.com/user-attachments/assets/68688416-7cab-4665-8595-5921c57df4e8" />
 
 
 ## 🛠️ Tech Stack
@@ -174,5 +174,5 @@ streamlit run frontend/app.py
 
 ### Built Focused on structural correctness, data engineering, and production-grade AI systems.
 
-**CodeMind doesn’t just retrieve code.** 
-**It reconstructs intent.** 
+> **CodeMind doesn’t just retrieve code.** 
+> **It reconstructs intent.** 
