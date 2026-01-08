@@ -1,17 +1,26 @@
 # CodeMind 🧠 
+<div align="center">
+
 ### Structural Code Intelligence with AST-Powered RAG
 
-> **CodeMind is not a generic LLM wrapper.  
-> It is a structural, code-aware RAG system that understands your codebase the way a senior engineer does.**
+> **CodeMind is not a generic LLM wrapper.** > **It is a structural, code-aware RAG system that understands your codebase the way a senior engineer does.**
 
----
+[![Python](https://img.shields.io/badge/Python-3.10%2B-blue?style=for-the-badge&logo=python&logoColor=white)](https://www.python.org/)
+[![FastAPI](https://img.shields.io/badge/FastAPI-005571?style=for-the-badge&logo=fastapi)](https://fastapi.tiangolo.com/)
+[![Qdrant](https://img.shields.io/badge/Qdrant-Vector_DB-red?style=for-the-badge)](https://qdrant.tech/)
+[![Streamlit](https://img.shields.io/badge/Streamlit-FF4B4B?style=for-the-badge&logo=streamlit&logoColor=white)](https://streamlit.io/)
 
-## What is CodeMind?
+</div>
+
+## ⚡ What is CodeMind?
+
+<img src="assets/codemind-demo.gif" align="right" width="45%" alt="CodeMind Demo">
 
 **CodeMind** is an AI-powered assistant that enables natural-language querying over real-world codebases with **high precision and zero hallucination**.
 
 Unlike standard RAG systems that treat code as plain text, CodeMind **preserves code structure**, reconstructs full logical units, and answers **only using verified code context**.
 
+<br clear="right"/>
 ---
 
 ## Why CodeMind is Different
@@ -109,7 +118,7 @@ Parent-child relationships are preserved to enable **accurate contextual reconst
 
 ### 1️⃣ Clone Repository
 ```bash
-git clone [https://github.com/your-username/CodeMind.git](https://github.com/your-username/CodeMind.git)
+git clone https://github.com/Prithvi1247/RAG-Coding-Assistant
 cd CodeMind
 ```
 ### 2️⃣ Create Virtual Environment
@@ -136,18 +145,13 @@ docker run -p 6333:6333 qdrant/qdrant
 ### 5️⃣ Start Backend
 ```Bash
 
-uvicorn backend.main:app --reload
+uvicorn backend.main:app 
 ```
 ### 6️⃣ Start Frontend
 ```Bash
 
 streamlit run frontend/app.py
 ```
-## Visual Proof
-
-📸 Streamlit UI with complex query and reconstructed context
-
-(Add screenshot here)
 
 ## Technical Challenges Solved
 - Handling Async AST Nodes
