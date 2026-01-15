@@ -6,7 +6,7 @@ from tools.retrieval.context_builder import context_structure
 from tools.llm.answerer import llm_response
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
-from tools.core.config import COLLECTION_NAME, QDRANT_URL
+from tools.core.config import COLLECTION_NAME, QDRANT_CLUSTER_ENDPOINT,QDRANT_API_KEY
 
 
 
@@ -29,7 +29,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-client = QdrantClient(QDRANT_URL)
+client = QdrantClient(url = QDRANT_CLUSTER_ENDPOINT, api_key = QDRANT_API_KEY)
 
 client.delete_collection(collection_name=COLLECTION_NAME)
 

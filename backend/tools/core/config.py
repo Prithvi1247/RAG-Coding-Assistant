@@ -3,8 +3,9 @@ from dotenv import load_dotenv # type: ignore
 load_dotenv()
 GOOGLE_API_KEY = os.getenv("GOOGLE_API_KEY")
 
-QDRANT_URL=os.getenv("QDRANT_URL")
+QDRANT_CLUSTER_ENDPOINT=os.getenv("QDRANT_URL")
 COLLECTION_NAME = "codebase_chunks"
+QDRANT_API_KEY = os.getenv("QDRANT_API_KEY")
 
 LLM_PROVIDER = 'google'
 
