@@ -63,7 +63,7 @@ def chunks_to_content(code_chunks: list[Document]) -> list[dict]:
 
     return net_content
 
-def attach_class_headers(code_objs: list[dict])-> list[dict]:
+def attach_class_headers(code_objs: list[dict], repo_id: str)-> list[dict]:
         
     class_headers = []
     
@@ -87,7 +87,7 @@ def attach_class_headers(code_objs: list[dict])-> list[dict]:
                 # force retrieve headers from db
             if not got_header:
                 
-                results = retrieve_chunks(class_name, k=3)
+                results = retrieve_chunks(class_name, k=3, repo_id= repo_id)
                 results = chunks_to_content(results)
                 for class_obj in results : 
                     if class_obj['symbol']== class_name:

@@ -4,9 +4,8 @@ from tools.indexing.classes.blocks import CodeChunk
 from .embeddings import build_metadata, embed_model
 import uuid
 from langchain_core.documents import Document # type: ignore
-from tools.core.config import COLLECTION_NAME, QDRANT_URL
+from tools.core.config import COLLECTION_NAME, QDRANT_CLUSTER_ENDPOINT, QDRANT_API_KEY
 from qdrant_client import QdrantClient # type: ignore
-from qdrant_client.models import Distance, VectorParams # type: ignore
 from langchain_qdrant import QdrantVectorStore # type: ignore
 
 def chunks_to_metadata(codechunks: list[CodeChunk])-> list[dict]:
@@ -17,7 +16,7 @@ def chunks_to_metadata(codechunks: list[CodeChunk])-> list[dict]:
 
     return metadatas
 
-def store_chunk(chunks: list[CodeChunk]):
+def store_chunk(chunks: list[CodeChunk], repo_id: str):
     documents = []
     ids = []
     
@@ -27,13 +26,15 @@ def store_chunk(chunks: list[CodeChunk]):
         
         # 2. SAFETY FILTER: Loop through and fix any None values
         clean_meta = {}
+        clean_meta['repo_id']= repo_id
+
         for key, value in meta.items():
             if value is None:
                 print(f"⚠️ Warning: Found None in field '{key}' for symbol '{chunk.symbol}'. Defaulting to empty string.")
                 clean_meta[key] = ""
             else:
                 clean_meta[key] = str(value) # Force string conversion
-        
+
         # 3. Create the document with the cleaned metadata
         documents.append(Document(
             page_content=chunk.chunk_text, 
@@ -46,27 +47,25 @@ def store_chunk(chunks: list[CodeChunk]):
         vector_db.add_documents(documents=documents, ids=ids)
         print(f"Successfully added {len(documents)} chunks to Qdrant.")
 
-def store_codebase(path: str ):
-    # Deleting old code base stored.
-
+def store_codebase(path: str , repo_id: str):
 
     codefiles = load_codebase(path)
     for file in codefiles: 
         code_chunks = ast_parse(file)
         
-        store_chunk(code_chunks)
+        store_chunk(code_chunks, repo_id)
 
-client = QdrantClient(QDRANT_URL)
+client = QdrantClient(url = QDRANT_CLUSTER_ENDPOINT, api_key =QDRANT_API_KEY )
 
-client.delete_collection(collection_name=COLLECTION_NAME)
+# client.delete_collection(collection_name=COLLECTION_NAME)
 
-client.create_collection(
-    collection_name=COLLECTION_NAME,
-    vectors_config=VectorParams(
-        size=768,
-        distance=Distance.COSINE
-    ),
-)
+# client.create_collection(
+#     collection_name=COLLECTION_NAME,
+#     vectors_config=VectorParams(
+#         size=768,
+#         distance=Distance.COSINE
+#     ),
+# )
 
 vector_db = QdrantVectorStore(
     client=client,

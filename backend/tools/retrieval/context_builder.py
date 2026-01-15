@@ -34,12 +34,12 @@ def format_content(objs:list[dict]) ->str:
         )
     return '\n\n -------- \n'.join(final)
 
-def context_structure(results:list[Document])->str:
+def context_structure(results:list[Document], repo_id:str)->str:
 
     content = chunks_to_content(results)
     print("Converted payload to string ✅")
 
-    final_content = attach_class_headers(content)
+    final_content = attach_class_headers(content, repo_id)
     print("Attached headers to class methods ✅")
 
     final_content = sorted(final_content, key= score, reverse=True)

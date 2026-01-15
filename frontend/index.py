@@ -29,6 +29,9 @@ with st.sidebar:
                 
                 if res.status_code == 200:
                     st.success("Codebase processed successfully!")
+
+                    repo_id = res.session_id
+                    
                     with st.expander("View Details"):
                         st.json(res.json())
                 else:
@@ -63,7 +66,7 @@ if prompt := st.chat_input("Ask a question about your code..."):
     with st.chat_message("assistant"):
         with st.spinner("Analyzing codebase..."):
             try:
-                response = requests.post(f"{BACKEND}/ask", json={"question": prompt})
+                response = requests.post(f"{BACKEND}/ask", json={"question": prompt,"repo_id": repo_id})
                 
                 if response.status_code == 200:
                     answer = response.json().get("answer", "No answer provided.")
